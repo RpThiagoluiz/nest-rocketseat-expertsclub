@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { NotFoundInterceptor } from './interceptions/entity-not-found-interception';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +15,8 @@ async function bootstrap() {
     })
   )
 
+  //interceptor - pegar o error
+  app.useGlobalInterceptors(new NotFoundInterceptor())
 
 
   //default ela vem a 3000

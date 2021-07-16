@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity'; 
+import { EntityNotFoundError } from './entity-not-found-error';
 //foi criada auto. E a entidade é responsavel por armazenar os tipos de variaveis que vc vai querer.
 
 @Injectable()
@@ -40,7 +41,14 @@ export class UsersService {
 
   findOne(id: number) {
     //return `This action returns a #${id} user`;
-    return this.users.find(user => user.id === id)
+    const user = this.users.find(user => user.id === id)
+
+
+    if(!user){
+      throw new EntityNotFoundError(`User with id #${id} wasnt found!`)
+    }
+
+    return user
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
