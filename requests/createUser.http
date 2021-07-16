@@ -1,6 +1,7 @@
 POST http://localhost:3333/users
 Content-Type: application/json
-//ja tras status code padrao.
+
 {
-  "name": "Thiago Luiz"
+  "name": "Thiago Luiz 2",
+  "email": "numtim@gmail.com"
 }

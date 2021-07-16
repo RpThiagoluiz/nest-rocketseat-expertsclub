@@ -5,6 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 //prefixo pra todos os end points
+//ERROR nao se trata nos controllers
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
