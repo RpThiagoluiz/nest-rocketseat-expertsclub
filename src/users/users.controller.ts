@@ -20,7 +20,8 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  //altearar o id para number, ele vai transformar ele aq no backend msm como number,
+  findOne(@Param('id') id: number) {
     return this.usersService.findOne(+id);
   }
 
