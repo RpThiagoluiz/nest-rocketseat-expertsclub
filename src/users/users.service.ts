@@ -18,7 +18,11 @@ export class UsersService {
 // e vc pode relacionar ele com a entendidade, extendedo ele a class que vc quer.
   create(createUserDto: CreateUserDto) {
     //lembra no createUserDto, ele nao tem id, geralmente bancos de dados ja trazem
-    const id = this.users[this.users.length - 1].id + 1 //somente para gerar um id, de acordo com o ultimo criado
+    const currentMaxId = this.users[this.users.length - 1]?.id  || 0 //somente para gerar um id, de acordo com o 
+    //caso nao achei o nullsafe, traz ele como zero
+    const id = currentMaxId + 1
+    
+    //ultimo criado
     //validar o usuario
     const user: User = {
       id,
@@ -56,6 +60,10 @@ export class UsersService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    const user = this.findOne(id)
+    const index = this.users.indexOf(user)
+    //splice recebe index para iniciar
+    this.users.splice(index,1)
+    //return `This action removes a #${id} user`;
   }
 }
