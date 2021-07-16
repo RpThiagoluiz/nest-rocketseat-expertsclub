@@ -40,7 +40,19 @@ export class UsersService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    const user = this.findOne(id)
+    //combinar os dados do usuario com os dados update
+    //A ordem importa, q ele vai substituir as coisas novas que vierem.
+    const newUser:User = {
+      ...user,
+      ...updateUserDto
+    }
+
+    const indexUser = this.users.indexOf(user)
+    this.users[indexUser] = newUser
+
+    return newUser
+   // return `This action updates a #${id} user`;
   }
 
   remove(id: number) {
