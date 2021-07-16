@@ -1,0 +1,2 @@
+DELETE http://localhost:3333/users/1
+//delete costuma retornar um no content, sem o status 200 ok, vamos mudar durante o curso.
